@@ -1,28 +1,12 @@
-# zbx7-auto-reg
 
-The independent work - Vagrant and Zabbix Agent2 7.0 LTS - Auto-registration to
-[Zabbix pfSense](https://enceladus.pfsense.cz)
+![Ubuntu Zabbix Agent2](./Images/foto.png)
+V souboru Vagrantfile je potřeba přidat, aby si virtuálka po spuštění automaticky vzala skripty ze stejné složky, kde se nachází Vagrantfile, a po instalaci je spustila.
 
-# Zabbix pfSense monitoring - Linux distribution by Agent2
+V souboru installagent je instalace Zabbix agenta podle návodu, který je uvedený na webu Vagrantu.
 
-Pomocí Vagrant si vytvořte server s libovolnou Linux distribucí. Instalujte
-na nej  Zabbix Agent2 a upravte konfiguraci tak, aby se tento host
-automaticky registroval na privátní - [Zabbix pfSense](https://enceladus.pfsense.cz).
+V souboru configureagent jsou na prvních třech řádcích příkazy, které zajistí, že každý stroj bude mít unikátní hostname.
+Dále následuje konfigurace agenta, kde bylo důležité:
 
-![Ubuntu Zabbix Agent2](./Images/osy-Ubuntu-ZabbixAgent2.webp)
+na řádku 6 doplnit, aby si to vzalo vygenerovaný hostname,
 
-## Požadované známkované úkoly
-
-- Přihlašte se na Zabbix server Enceladus pod účtem spos a ověřte kolik hostů je monitorováno v tomto zabbixu.
-- Vytvořte si adresář s konfigurací, která zajistí deploy Vámi zvolené Linuxové distribuce pomocí Vagrant.
-- Vytvořte instalační a konfigurační scripty tak, aby jste nainstalovali Zabbix agent2 verze 7.0 LTS do VM a nastavili konfiguraci agenta pro auto-registraci na Zabbix server enceladus.pfsense.cz. Akce na Enceladu má nastavenu takovou podmínku (Host metadata contains SPOS)
-- Výsledný Váš registrovaný host s unikátním jmenem vložte jako Screenshot do adresáře Images.
-- Svého registrovaného hosta vyexportuje v libovolném formátu YAML, XML nebo JSON jako soubor a vložte do Vašeho projektu.
-- Upravte README.md tak, aby obsohovalo informace o Vašich změnách v tomto zadání.
-
-# Nápověda
-
-- Zabbix 7.0 LTS [auto-registration](https://www.zabbix.com/documentation/7.0/en/manual/discovery/auto_registration)
-- [Vagrant examples](https://github.com/sposdknl/2025-sposdk-osy/tree/main/Vagrant)
-
-...
+a na řádku 10 přidat do HostMetadata slovo SPOS, které je nastavené v pravidlech na serveru Enceladus.
